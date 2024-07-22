@@ -634,6 +634,7 @@ impl TestServer {
             executor,
             clickhouse_client: None,
             config: Config {
+                http_host: None,
                 http_port: 0,
                 database_url: "".into(),
                 database_max_connections: 0,

@@ -73,8 +73,12 @@ async fn main() -> Result<()> {
 
             let state = AppState::new(config, Executor::Production).await?;
 
-            let listener = TcpListener::bind(&format!("0.0.0.0:{}", state.config.http_port))
-                .expect("failed to bind TCP listener");
+            let listener = TcpListener::bind(&format!(
+                "{}:{}",
+                state.config.http_host.or("0.0.0.0"),
+                state.config.http_port
+            ))
+            .expect("failed to bind TCP listener");
 
             let rpc_server = if is_collab {
                 let epoch = state

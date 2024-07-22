@@ -110,6 +110,7 @@ impl std::error::Error for Error {}
 
 #[derive(Deserialize)]
 pub struct Config {
+    pub http_host: Option<String>,
     pub http_port: u16,
     pub database_url: String,
     pub migrations_path: Option<PathBuf>,
